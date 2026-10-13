@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcpforunityserver"
+version = "9.0.3+local.1"
+description = "Project-local MCP for Unity server with central multi-project routing hardening."
+requires-python = ">=3.11"
+dependencies = [
+  "httpx>=0.27.2",
+  "fastmcp==2.14.1",
+  "mcp>=1.16.0",
+  "pydantic>=2.12.5",
+  "tomli>=2.3.0",
+  "fastapi>=0.104.0",
+  "uvicorn>=0.35.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "pytest-asyncio>=0.23"
+]
+
+[project.scripts]
+mcp-for-unity = "main:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+py-modules = ["main"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["core*", "models*", "services*", "transport*", "utils*"]
+namespaces = true
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

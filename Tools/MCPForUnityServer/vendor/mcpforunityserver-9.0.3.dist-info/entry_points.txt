@@ -1,0 +1,2 @@
+[console_scripts]
+mcp-for-unity = main:main

@@ -1,0 +1,30 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="../Components/Common.uss" />
+    <Style src="EditorPrefsWindow.uss" />
+    
+    <ui:ScrollView name="scroll-view" mode="Vertical">
+        <!-- Header -->
+        <ui:VisualElement class="header">
+            <ui:Label text="UnityMCP 编辑器偏好" class="title" />
+            <ui:Label text="查看和修改 UnityMCP 使用的 EditorPrefs。适合排查连接、路径、工具启用状态和本地调试配置。" class="description" />
+        </ui:VisualElement>
+        
+        <!-- Add New Row (initially hidden) -->
+        <ui:VisualElement name="add-new-row" class="add-new-row" style="display: none;">
+            <ui:VisualElement class="add-row-content">
+                <ui:TextField name="new-key-field" label="键" class="key-field" />
+                <ui:TextField name="new-value-field" label="值" class="value-field" />
+                <ui:DropdownField name="new-type-dropdown" label="类型" class="type-dropdown" choices="String,Int,Float,Bool" index="0" />
+                <ui:VisualElement class="add-buttons">
+                    <ui:Button name="create-button" text="创建" class="save-button" />
+                    <ui:Button name="cancel-button" text="取消" class="cancel-button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        
+        <!-- Prefs List -->
+        <ui:VisualElement name="prefs-container" class="prefs-container">
+            <!-- Items will be added here programmatically -->
+        </ui:VisualElement>
+    </ui:ScrollView>
+</ui:UXML>

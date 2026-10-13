@@ -1,0 +1,52 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:VisualElement name="root-container" class="root-layout">
+        <ui:VisualElement name="window-header" class="window-header">
+            <ui:VisualElement class="brand-block">
+                <ui:Label text="MCP For Unity" name="window-title" class="window-title" />
+                <ui:Label text="Private Workbench for Unity VibeCoding" name="subtitle" class="subtitle" />
+            </ui:VisualElement>
+            <ui:VisualElement class="header-status-grid">
+                <ui:VisualElement class="header-status-card">
+                    <ui:Label text="Project" class="header-status-label" />
+                    <ui:Label text="..." name="header-project-value" class="header-status-value" />
+                </ui:VisualElement>
+                <ui:VisualElement class="header-status-card">
+                    <ui:Label text="Server" class="header-status-label" />
+                    <ui:Label text="Checking" name="header-server-value" class="header-status-value" />
+                </ui:VisualElement>
+                <ui:VisualElement class="header-status-card">
+                    <ui:Label text="Session" class="header-status-label" />
+                    <ui:Label text="Checking" name="header-session-value" class="header-status-value" />
+                </ui:VisualElement>
+                <ui:VisualElement class="header-status-card endpoint-card">
+                    <ui:Label text="Endpoint" class="header-status-label" />
+                    <ui:Label text="..." name="header-endpoint-value" class="header-status-value monospaced-value" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <uie:Toolbar name="tab-toolbar" class="tab-toolbar">
+            <ui:VisualElement class="toolbar-segment-group">
+                <uie:ToolbarToggle name="settings-tab" text="Overview" value="true" class="toolbar-segment" tooltip="总览连接、Server、客户端配置和基础设置" />
+                <uie:ToolbarToggle name="tools-tab" text="Tools" class="toolbar-segment" tooltip="查看、搜索和启用 UnityMCP 工具" />
+                <uie:ToolbarToggle name="diagnostics-tab" text="Health" class="toolbar-segment" tooltip="查看中心 Server、多项目 Session、版本锁和工具健康状态" />
+                <uie:ToolbarToggle name="local-setup-tab" text="Setup" class="toolbar-segment toolbar-action-button" tooltip="查看 UnityMCP 本地环境检查" />
+                <uie:ToolbarToggle name="editor-prefs-tab" text="Prefs" class="toolbar-segment toolbar-action-button" tooltip="查看和修改 UnityMCP EditorPrefs" />
+            </ui:VisualElement>
+        </uie:Toolbar>
+        <ui:ScrollView name="settings-panel" class="panel-scroll" style="flex-grow: 1;">
+            <ui:VisualElement name="settings-container" class="section-stack" />
+        </ui:ScrollView>
+        <ui:ScrollView name="tools-panel" class="panel-scroll hidden" style="flex-grow: 1;">
+            <ui:VisualElement name="tools-container" class="section-stack" />
+        </ui:ScrollView>
+        <ui:ScrollView name="diagnostics-panel" class="panel-scroll hidden" style="flex-grow: 1;">
+            <ui:VisualElement name="diagnostics-container" class="section-stack" />
+        </ui:ScrollView>
+        <ui:VisualElement name="local-setup-panel" class="panel-host hidden" style="flex-grow: 1;">
+            <ui:VisualElement name="local-setup-container" class="section-stack" />
+        </ui:VisualElement>
+        <ui:VisualElement name="editor-prefs-panel" class="panel-host hidden" style="flex-grow: 1;">
+            <ui:VisualElement name="editor-prefs-container" class="section-stack" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

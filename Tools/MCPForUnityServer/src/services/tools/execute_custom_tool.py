@@ -1,0 +1,51 @@
+from typing import Annotated
+
+from fastmcp import Context
+from mcp.types import ToolAnnotations
+from models.models import MCPResponse
+
+from services.custom_tool_service import (
+    CustomToolService,
+    resolve_project_id_for_unity_instance,
+)
+from services.registry import mcp_for_unity_tool
+from services.tools import choose_unity_instance
+
+
+@mcp_for_unity_tool(
+    name="execute_custom_tool",
+    description="Execute a project-scoped custom tool registered by Unity.",
+    annotations=ToolAnnotations(
+        title="Execute Custom Tool",
+        destructiveHint=True,
+    ),
+)
+async def execute_custom_tool(
+    ctx: Context,
+    tool_name: str,
+    parameters: dict | None = None,
+    unity_instance: Annotated[str,
+                              "Optional target Unity instance Name@hash. Overrides the session active instance for this call."] | None = None,
+) -> MCPResponse:
+    unity_instance = choose_unity_instance(ctx, unity_instance)
+    if not unity_instance:
+        return MCPResponse(
+            success=False,
+            message="No active Unity instance. Call set_active_instance with Name@hash from mcpforunity://instances.",
+        )
+
+    project_id = resolve_project_id_for_unity_instance(unity_instance)
+    if project_id is None:
+        return MCPResponse(
+            success=False,
+            message=f"Could not resolve project id for {unity_instance}. Ensure Unity is running and reachable.",
+        )
+
+    if not isinstance(parameters, dict):
+        return MCPResponse(
+            success=False,
+            message="parameters must be an object/dictionary",
+        )
+
+    service = CustomToolService.get_instance()
+    return await service.execute_tool(project_id, tool_name, unity_instance, parameters)

@@ -1,0 +1,28 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:VisualElement class="section">
+        <ui:Label text="Health / Diagnostics" class="section-title" />
+        <ui:Label text="检查中心 Server、多项目 Session、版本锁、自动连接和工具注册状态。" class="help-text" />
+        <ui:VisualElement class="tool-actions">
+            <ui:Button name="diagnostics-refresh-button" text="刷新诊断" class="action-button tool-action-button" />
+        </ui:VisualElement>
+        <ui:VisualElement name="diagnostics-summary" class="diagnostics-grid" />
+    </ui:VisualElement>
+
+    <ui:VisualElement class="section">
+        <ui:Label text="版本锁" class="section-title" />
+        <ui:Label name="version-lock-status" text="等待刷新..." class="help-text diagnostics-status" />
+        <ui:VisualElement name="diagnostics-warnings" class="section-content" />
+    </ui:VisualElement>
+
+    <ui:VisualElement class="section">
+        <ui:Label text="已连接 Unity 项目" class="section-title" />
+        <ui:Label text="多项目场景下，Codex 应先读取 mcpforunity://instances，再使用 set_active_instance 切换目标。" class="help-text" />
+        <ui:VisualElement name="diagnostics-sessions" class="section-content" />
+    </ui:VisualElement>
+
+    <ui:VisualElement class="section">
+        <ui:Label text="工具自检" class="section-title" />
+        <ui:Label name="tool-health-status" text="等待刷新..." class="help-text diagnostics-status" />
+        <ui:VisualElement name="diagnostics-tools" class="section-content" />
+    </ui:VisualElement>
+</ui:UXML>

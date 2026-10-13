@@ -1,0 +1,1051 @@
+/* YouTube Tools — Main Stylesheet
+   Specificity strategy:
+   - Layout / structural classes use single-class selectors (.yt-*)
+   - Interactive elements (Button, TextField, Dropdown) MUST use .yt-root prefix
+     so they reach specificity 0,2,0 and beat Unity's UnityDefaultRuntimeTheme
+     which targets .unity-button / .unity-base-field__input at 0,1,0.
+   - background-image: none is required on all Buttons to clear Unity's
+     9-slice button texture that otherwise renders over our background-color.
+*/
+@import url("Variables.uss");
+
+/* ══════════════════════════════════════════════════
+   ROOT
+   ══════════════════════════════════════════════════ */
+.yt-root {
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: #0d1117;
+    color: #e6edf3;
+    font-size: 14px;
+}
+
+/* ══════════════════════════════════════════════════
+   UNITY INTERNAL ELEMENT BASELINE
+   Applied with .yt-root prefix (specificity 0,2,0)
+   to beat UnityDefaultRuntimeTheme (specificity 0,1,0).
+   ══════════════════════════════════════════════════ */
+
+/* ── All buttons: clear theme texture, set dark baseline ── */
+.yt-root .unity-button {
+    background-color: #21262d;
+    background-image: none;
+    color: #e6edf3;
+    border-top-color: #30363d;
+    border-right-color: #30363d;
+    border-bottom-color: #30363d;
+    border-left-color: #30363d;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    -unity-text-align: middle-center;
+}
+.yt-root .unity-button:hover {
+    background-color: #30363d;
+    background-image: none;
+}
+.yt-root .unity-button:active {
+    background-color: #484f58;
+    background-image: none;
+}
+.yt-root .unity-button:disabled {
+    background-color: #161b22;
+    background-image: none;
+    color: #484f58;
+}
+
+/* ── TextField input area ── */
+.yt-root .unity-base-text-field__input {
+    background-color: #21262d;
+    background-image: none;
+    color: #e6edf3;
+    border-top-color: #30363d;
+    border-right-color: #30363d;
+    border-bottom-color: #30363d;
+    border-left-color: #30363d;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.yt-root .unity-base-text-field__input:focus {
+    border-top-color: #1d6fa5;
+    border-right-color: #1d6fa5;
+    border-bottom-color: #1d6fa5;
+    border-left-color: #1d6fa5;
+}
+
+/* ── TextField cursor & selected text ── */
+.yt-root .unity-base-text-field__input > .unity-text-element {
+    color: #e6edf3;
+}
+
+/* ── TextField label (usually empty / hidden in our fields) ── */
+.yt-root .unity-base-field__label {
+    color: #8b949e;
+    min-width: 0;
+    padding-right: 0;
+}
+
+/* ── DropdownField: the clickable input area ── */
+.yt-root .unity-base-popup-field__input {
+    background-color: #21262d;
+    background-image: none;
+    color: #e6edf3;
+    border-top-color: #30363d;
+    border-right-color: #30363d;
+    border-bottom-color: #30363d;
+    border-left-color: #30363d;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 8px;
+    padding-right: 4px;
+}
+.yt-root .unity-base-popup-field__input:hover {
+    background-color: #30363d;
+    background-image: none;
+    border-top-color: #1d6fa5;
+    border-right-color: #1d6fa5;
+    border-bottom-color: #1d6fa5;
+    border-left-color: #1d6fa5;
+}
+.yt-root .unity-base-popup-field__input > .unity-text-element {
+    color: #e6edf3;
+}
+.yt-root .unity-base-popup-field__arrow {
+    -unity-background-image-tint-color: #8b949e;
+}
+
+/* ── ScrollView chrome ── */
+.yt-root .unity-scroll-view__content-container {
+    background-color: transparent;
+}
+.yt-root .unity-scroller--vertical > .unity-base-slider__tracker {
+    background-color: #21262d;
+    background-image: none;
+}
+.yt-root .unity-scroller--vertical > .unity-base-slider__dragger {
+    background-color: #30363d;
+    background-image: none;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+/* ══════════════════════════════════════════════════
+   TITLE BAR
+   ══════════════════════════════════════════════════ */
+.yt-titlebar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background-color: #161b22;
+    border-bottom-width: 1px;
+    border-bottom-color: #30363d;
+}
+
+.yt-titlebar__title {
+    font-size: 20px;
+    color: #e6edf3;
+    -unity-font-style: bold;
+}
+
+.yt-titlebar__accent {
+    color: #ff0000;
+}
+
+/* Settings button — .yt-root prefix for specificity 0,2,0 */
+.yt-root .yt-btn-settings {
+    background-color: #21262d;
+    background-image: none;
+    color: #e6edf3;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-color: #30363d;
+    border-right-color: #30363d;
+    border-bottom-color: #30363d;
+    border-left-color: #30363d;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 13px;
+}
+.yt-root .yt-btn-settings:hover {
+    background-color: #30363d;
+    background-image: none;
+}
+
+/* ══════════════════════════════════════════════════
+   URL INPUT PANEL
+   ══════════════════════════════════════════════════ */
+.yt-url-panel {
+    flex-direction: column;
+    padding: 12px 16px;
+    background-color: #161b22;
+    border-bottom-width: 1px;
+    border-bottom-color: #30363d;
+}
+
+.yt-url-row {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+/* Wrapper 承担 flex-grow，普通 VisualElement 的 flex 行为完全可靠 */
+.yt-url-field-wrapper {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 0;
+    margin-right: 8px;
+}
+
+/* TextField 填满 wrapper 即可，不再自己做 flex-grow */
+.yt-url-field {
+    flex-grow: 1;
+    min-width: 0;
+    font-size: 14px;
+}
+
+/* Fetch button */
+.yt-root .yt-btn-fetch {
+    background-color: #e00000;
+    background-image: none;
+    color: #ffffff;
+    flex-shrink: 0;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 14px;
+    -unity-font-style: bold;
+}
+.yt-root .yt-btn-fetch:hover {
+    background-color: #cc0000;
+    background-image: none;
+}
+.yt-root .yt-btn-fetch:disabled {
+    background-color: #660000;
+    background-image: none;
+    color: #888888;
+}
+
+.yt-status-label {
+    font-size: 12px;
+    color: #58a6ff;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.yt-status-label.ok    { color: #3fb950; }
+.yt-status-label.error { color: #f85149; }
+.yt-status-label.warn  { color: #d29922; }
+
+/* ══════════════════════════════════════════════════
+   VIDEO PREVIEW PANEL
+   ══════════════════════════════════════════════════ */
+.yt-preview-panel {
+    flex-direction: row;
+    padding: 12px 16px;
+    background-color: #161b22;
+    border-bottom-width: 1px;
+    border-bottom-color: #30363d;
+}
+
+.yt-thumbnail {
+    width: 280px;
+    height: 158px;
+    background-color: #21262d;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    margin-right: 16px;
+    flex-shrink: 0;
+}
+
+.yt-thumbnail-placeholder {
+    width: 280px;
+    height: 158px;
+    background-color: #21262d;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    margin-right: 16px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.yt-thumbnail-placeholder-label {
+    color: #484f58;
+    font-size: 12px;
+}
+
+.yt-meta-container {
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: flex-start;
+}
+
+.yt-meta-title {
+    font-size: 16px;
+    color: #e6edf3;
+    -unity-font-style: bold;
+    margin-bottom: 6px;
+    white-space: normal;
+}
+
+.yt-meta-channel {
+    font-size: 13px;
+    color: #8b949e;
+    margin-bottom: 4px;
+}
+
+.yt-meta-row {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+}
+
+.yt-meta-stat {
+    font-size: 12px;
+    color: #8b949e;
+    margin-right: 16px;
+}
+
+.yt-meta-date {
+    font-size: 12px;
+    color: #8b949e;
+    margin-top: 4px;
+}
+
+/* ══════════════════════════════════════════════════
+   FORMAT SELECTOR PANEL
+   ══════════════════════════════════════════════════ */
+.yt-format-panel {
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #1c2333;
+    border-bottom-width: 1px;
+    border-bottom-color: #30363d;
+    flex-wrap: wrap;
+}
+
+.yt-format-label {
+    font-size: 13px;
+    color: #8b949e;
+    margin-right: 8px;
+}
+
+/* DropdownField container: layout only; inner button styled by .unity-base-popup-field__input above */
+.yt-dropdown {
+    margin-right: 16px;
+    min-width: 200px;
+}
+
+/* ══════════════════════════════════════════════════
+   DOWNLOAD PANEL
+   ══════════════════════════════════════════════════ */
+.yt-download-panel {
+    flex-direction: column;
+    padding: 12px 16px;
+    background-color: #161b22;
+    border-bottom-width: 1px;
+    border-bottom-color: #30363d;
+}
+
+.yt-path-row {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.yt-path-label {
+    font-size: 13px;
+    color: #8b949e;
+    margin-right: 8px;
+    white-space: nowrap;
+}
+
+/* TextField container: layout only */
+.yt-path-field {
+    flex-grow: 1;
+    font-size: 13px;
+    margin-right: 8px;
+}
+
+/* Browse button */
+.yt-root .yt-btn-browse {
+    background-color: #21262d;
+    background-image: none;
+    color: #e6edf3;
+    border-top-color: #30363d;
+    border-right-color: #30363d;
+    border-bottom-color: #30363d;
+    border-left-color: #30363d;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 13px;
+}
+.yt-root .yt-btn-browse:hover {
+    background-color: #30363d;
+    background-image: none;
+}
+
+/* Progress bar */
+.yt-progress-container {
+    flex-direction: column;
+    margin-bottom: 8px;
+}
+
+.yt-progress-bg {
+    height: 8px;
+    background-color: #21262d;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.yt-progress-fill {
+    height: 8px;
+    background-color: #1d6fa5;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    width: 0%;
+    transition-property: width;
+    transition-duration: 0.2s;
+}
+
+.yt-progress-fill.done {
+    background-color: #3fb950;
+}
+
+.yt-progress-text {
+    font-size: 12px;
+    color: #8b949e;
+}
+
+/* Action buttons row */
+.yt-action-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+}
+
+/* Preview button */
+.yt-root .yt-btn-preview {
+    background-color: #21262d;
+    background-image: none;
+    color: #58a6ff;
+    border-top-color: #30363d;
+    border-right-color: #30363d;
+    border-bottom-color: #30363d;
+    border-left-color: #30363d;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 14px;
+    padding-right: 14px;
+    font-size: 13px;
+}
+.yt-root .yt-btn-preview:hover {
+    background-color: #30363d;
+    background-image: none;
+}
+.yt-root .yt-btn-preview:disabled {
+    background-color: #161b22;
+    background-image: none;
+    color: #484f58;
+}
+
+/* Download button */
+.yt-root .yt-btn-download {
+    background-color: #1d6fa5;
+    background-image: none;
+    color: #ffffff;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 18px;
+    padding-right: 18px;
+    font-size: 14px;
+    -unity-font-style: bold;
+}
+.yt-root .yt-btn-download:hover {
+    background-color: #1a5f8f;
+    background-image: none;
+}
+.yt-root .yt-btn-download:disabled {
+    background-color: #0d3a5a;
+    background-image: none;
+    color: #555555;
+}
+
+/* Cancel button */
+.yt-root .yt-btn-cancel {
+    background-color: #21262d;
+    background-image: none;
+    color: #f85149;
+    border-top-color: #f85149;
+    border-right-color: #f85149;
+    border-bottom-color: #f85149;
+    border-left-color: #f85149;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 13px;
+}
+.yt-root .yt-btn-cancel:hover {
+    background-color: #2d1a1a;
+    background-image: none;
+}
+
+/* ══════════════════════════════════════════════════
+   DOWNLOAD HISTORY
+   ══════════════════════════════════════════════════ */
+.yt-history-section {
+    flex-direction: column;
+    padding-top: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 12px;
+    background-color: #161b22;
+}
+
+.yt-history-header {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.yt-history-title {
+    font-size: 13px;
+    color: #8b949e;
+    -unity-font-style: bold;
+}
+
+.yt-history-item {
+    flex-direction: row;
+    align-items: center;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: #1c2333;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    margin-bottom: 4px;
+}
+
+.yt-history-item:hover {
+    background-color: #21262d;
+}
+
+.yt-history-item-icon {
+    color: #3fb950;
+    margin-right: 8px;
+    font-size: 13px;
+}
+
+.yt-history-item-name {
+    flex-grow: 1;
+    color: #e6edf3;
+    font-size: 13px;
+    overflow: hidden;
+}
+
+.yt-history-item-size {
+    color: #8b949e;
+    font-size: 12px;
+    margin-right: 8px;
+}
+
+.yt-root .yt-history-item-btn {
+    background-color: #21262d;
+    background-image: none;
+    color: #e6edf3;
+    border-top-color: #30363d;
+    border-right-color: #30363d;
+    border-bottom-color: #30363d;
+    border-left-color: #30363d;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 12px;
+    margin-left: 4px;
+}
+.yt-root .yt-history-item-btn:hover {
+    background-color: #30363d;
+    background-image: none;
+}
+
+/* Danger variant: delete button */
+.yt-root .yt-history-item-btn--danger {
+    color: #f85149;
+    border-top-color: #f85149;
+    border-right-color: #f85149;
+    border-bottom-color: #f85149;
+    border-left-color: #f85149;
+    background-image: none;
+}
+.yt-root .yt-history-item-btn--danger:hover {
+    background-color: #2d1a1a;
+    background-image: none;
+}
+
+/* History header: title + clear button side by side */
+.yt-history-header {
+    justify-content: space-between;
+}
+
+/* Clear-all button in history header */
+.yt-root .yt-history-clear-btn {
+    background-color: transparent;
+    background-image: none;
+    color: #8b949e;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-size: 11px;
+}
+.yt-root .yt-history-clear-btn:hover {
+    color: #f85149;
+    background-image: none;
+}
+
+/* ══════════════════════════════════════════════════
+   SETTINGS OVERLAY
+   ══════════════════════════════════════════════════ */
+.yt-settings-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    align-items: center;
+    justify-content: center;
+}
+
+.yt-settings-card {
+    background-color: #161b22;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-color: #30363d;
+    border-right-color: #30363d;
+    border-bottom-color: #30363d;
+    border-left-color: #30363d;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+    width: 520px;
+    max-height: 600px;
+}
+
+.yt-settings-title {
+    font-size: 18px;
+    color: #e6edf3;
+    -unity-font-style: bold;
+    margin-bottom: 20px;
+}
+
+.yt-settings-section-title {
+    font-size: 11px;
+    color: #8b949e;
+    -unity-font-style: bold;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.yt-settings-row {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.yt-settings-label {
+    font-size: 13px;
+    color: #e6edf3;
+    width: 130px;
+    flex-shrink: 0;
+}
+
+/* Wrapper 承担 flex-grow，普通 VisualElement 的 flex 行为完全可靠 */
+.yt-settings-field-wrapper {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+/* TextField 填满 wrapper 即可 */
+.yt-settings-field {
+    flex-grow: 1;
+    min-width: 0;
+    font-size: 13px;
+}
+
+/* DropdownField 填满 wrapper */
+.yt-settings-dropdown {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.yt-settings-btn-row {
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+/* Save button */
+.yt-root .yt-btn-save {
+    background-color: #1d6fa5;
+    background-image: none;
+    color: #ffffff;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 14px;
+    -unity-font-style: bold;
+    margin-left: 8px;
+}
+.yt-root .yt-btn-save:hover {
+    background-color: #1a5f8f;
+    background-image: none;
+}
+
+/* Close button */
+.yt-root .yt-btn-close {
+    background-color: #21262d;
+    background-image: none;
+    color: #e6edf3;
+    border-top-color: #30363d;
+    border-right-color: #30363d;
+    border-bottom-color: #30363d;
+    border-left-color: #30363d;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 14px;
+}
+.yt-root .yt-btn-close:hover {
+    background-color: #30363d;
+    background-image: none;
+}
+
+/* ══════════════════════════════════════════════════
+   FIRST-RUN OVERLAY
+   ══════════════════════════════════════════════════ */
+.yt-firstrun-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(13, 17, 23, 0.95);
+    align-items: center;
+    justify-content: center;
+}
+
+.yt-firstrun-card {
+    background-color: #161b22;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-color: #30363d;
+    border-right-color: #30363d;
+    border-bottom-color: #30363d;
+    border-left-color: #30363d;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
+    width: 480px;
+    align-items: center;
+}
+
+.yt-firstrun-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+    color: #ff0000;
+}
+
+.yt-firstrun-title {
+    font-size: 20px;
+    color: #e6edf3;
+    -unity-font-style: bold;
+    margin-bottom: 10px;
+}
+
+.yt-firstrun-desc {
+    font-size: 13px;
+    color: #8b949e;
+    margin-bottom: 20px;
+    white-space: normal;
+    -unity-text-align: upper-center;
+}
+
+.yt-firstrun-progress {
+    font-size: 13px;
+    color: #58a6ff;
+    margin-bottom: 16px;
+    min-height: 20px;
+}
+
+.yt-firstrun-btn-row {
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* Auto-download button */
+.yt-root .yt-btn-auto-download {
+    background-color: #e00000;
+    background-image: none;
+    color: #ffffff;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 14px;
+    -unity-font-style: bold;
+    margin-right: 12px;
+}
+.yt-root .yt-btn-auto-download:hover {
+    background-color: #cc0000;
+    background-image: none;
+}
+.yt-root .yt-btn-auto-download:disabled {
+    background-color: #660000;
+    background-image: none;
+    color: #888888;
+}
+
+/* Manual/skip button */
+.yt-root .yt-btn-manual {
+    background-color: #21262d;
+    background-image: none;
+    color: #e6edf3;
+    border-top-color: #30363d;
+    border-right-color: #30363d;
+    border-bottom-color: #30363d;
+    border-left-color: #30363d;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 14px;
+}
+.yt-root .yt-btn-manual:hover {
+    background-color: #30363d;
+    background-image: none;
+}
+
+/* ══════════════════════════════════════════════════
+   MISC
+   ══════════════════════════════════════════════════ */
+.yt-divider {
+    height: 1px;
+    background-color: #30363d;
+}
+
+.yt-scrollview {
+    flex-grow: 1;
+    background-color: transparent;
+}
+
+.yt-empty-label {
+    font-size: 13px;
+    color: #484f58;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    -unity-text-align: upper-center;
+}
+
+/* ══════════════════════════════════════════════════
+   ACTIVE DOWNLOADS QUEUE
+   ══════════════════════════════════════════════════ */
+.yt-active-section {
+    flex-direction: column;
+    padding-top: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 4px;
+    background-color: #161b22;
+}
+
+.yt-active-task {
+    flex-direction: column;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: #1c2333;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    margin-bottom: 6px;
+}
+
+.yt-active-task-title {
+    font-size: 12px;
+    color: #e6edf3;
+    margin-bottom: 4px;
+    overflow: hidden;
+}
+
+/* Reuse yt-progress-bg / yt-progress-fill for active task rows */
+.yt-active-task .yt-progress-bg {
+    margin-bottom: 4px;
+}
+
+.yt-active-task .yt-progress-text {
+    font-size: 11px;
+    color: #8b949e;
+    margin-bottom: 4px;
+}

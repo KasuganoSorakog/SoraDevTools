@@ -1,0 +1,15 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.soratools.usbadb" >
+4
+5    <uses-sdk android:minSdkVersion="30" />
+5-->I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml
+6
+7    <uses-feature
+7-->I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml:3:5-5:36
+8        android:name="android.hardware.usb.host"
+8-->I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml:4:9-49
+9        android:required="false" />
+9-->I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml:5:9-33
+10
+11</manifest>

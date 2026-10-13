@@ -1,0 +1,13 @@
+{
+  "UseHttpTransport": true,
+  "HttpTransportScope": "local",
+  "HttpBaseUrl": "http://localhost:8080",
+  "CentralServerEnabled": true,
+  "CentralServerAutoStart": true,
+  "CentralServerHideWindow": true,
+  "ServerSourceMode": "project-local",
+  "CustomServerSource": "",
+  "AutoConnect": true,
+  "Language": "zh-CN",
+  "MigrationStatus": "Created with private project-local defaults."
+}

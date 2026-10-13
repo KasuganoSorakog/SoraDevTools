@@ -1,0 +1,33 @@
+plugins {
+    id 'com.android.library'
+}
+
+// Keep Gradle intermediates out of Unity's imported Assets tree.
+buildDir = file("${rootProject.projectDir}/../../../Library/SoraToolsAndroidUsbAdbBridge/library")
+
+android {
+    namespace 'com.soratools.usbadb'
+    compileSdk 30
+    // Unity's bundled SDK includes 34.0.0 but not the obsolete 30.0.3 build tools.
+    // This controls only packaging tools; the library's Android API contract remains API 30.
+    buildToolsVersion '34.0.0'
+
+    defaultConfig {
+        minSdk 30
+        targetSdk 30
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+tasks.register('copyReleaseAarToUnity', Copy) {
+    dependsOn(tasks.named('assembleRelease'))
+    from(layout.buildDirectory.dir('outputs/aar'))
+    include('*-release.aar')
+    rename { 'AndroidUsbAdbBridge.aar' }
+    into(file("${rootProject.projectDir}/../Plugins/Android"))
+}

@@ -1,0 +1,71 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="../Common.uss" />
+    <ui:VisualElement name="settings-section" class="section">
+        <ui:Label text="基础设置" class="section-title" />
+        <ui:VisualElement class="section-content">
+            <ui:VisualElement class="setting-row">
+                <ui:Label text="当前版本:" class="setting-label" />
+                <ui:Label text="..." name="version-label" class="setting-value" />
+            </ui:VisualElement>
+            <ui:VisualElement class="setting-row">
+                <ui:Label text="调试日志:" class="setting-label" />
+                <ui:Toggle name="debug-logs-toggle" class="setting-toggle" />
+            </ui:VisualElement>
+            <ui:VisualElement class="setting-column">
+                <ui:Label text="脚本校验级别:" class="setting-label" />
+                <ui:DropdownField name="validation-level" class="setting-dropdown" />
+                <ui:Label name="validation-description" class="validation-description" />
+            </ui:VisualElement>
+            <ui:Foldout name="advanced-settings-foldout" text="高级设置" class="advanced-settings-foldout">
+                <ui:VisualElement class="advanced-settings-content">
+                    <ui:Label text="本机路径设置（留空则自动检测）:" class="advanced-label" />
+                    <ui:VisualElement class="override-row">
+                        <ui:Label text="uvx 路径:" class="override-label" />
+                        <ui:VisualElement class="status-indicator-small" name="uv-path-status" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="path-override-controls">
+                        <ui:TextField name="uv-path-override" readonly="true" class="override-field" />
+                        <ui:Button name="browse-uv-button" text="选择" class="icon-button" />
+                        <ui:Button name="clear-uv-button" text="清除" class="icon-button" />
+                    </ui:VisualElement>
+                    <ui:Label text="本地 Server 源码:" class="advanced-label" style="margin-top: 10px;" />
+                    <ui:Label text="私有化版本默认使用项目内 Tools/MCPForUnityServer，不再从 GitHub 或 PyPI 拉取 Server。" class="help-text" />
+                    <ui:VisualElement class="override-row">
+                        <ui:Label text="Server 目录:" class="override-label" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="path-override-controls">
+                        <ui:TextField name="git-url-override" placeholder-text="例如: E:/Project/Tools/MCPForUnityServer" class="override-field" />
+                        <ui:Button name="browse-git-url-button" text="选择" class="icon-button" />
+                        <ui:Button name="clear-git-url-button" text="清除" class="icon-button" />
+                    </ui:VisualElement>
+                    <ui:Label text="默认目录: Tools/MCPForUnityServer" class="help-text" style="margin-top: 5px;" />
+
+                    <ui:Label text="本地调试:" class="advanced-label" style="display: none; margin-top: 10px;" />
+                    <ui:Label text="私有化版本已禁用 uvx 远端刷新参数。" class="help-text" style="display: none;" />
+                    <ui:VisualElement class="setting-row" style="display: none;">
+                        <ui:Label text="强制重新构建本地 Server:" class="setting-label" />
+                        <ui:Toggle name="dev-mode-force-refresh-toggle" class="setting-toggle" />
+                    </ui:VisualElement>
+
+                    <ui:Label text="本地包部署:" class="advanced-label" style="margin-top: 12px;" />
+                    <ui:Label text="将另一份 MCPForUnity 包复制到当前项目的 Packages 位置，适合维护私有版本。" class="help-text" />
+                    <ui:VisualElement class="override-row">
+                        <ui:Label text="源包目录:" class="override-label" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="path-override-controls">
+                        <ui:TextField name="deploy-source-path" class="override-field" />
+                        <ui:Button name="browse-deploy-source-button" text="选择" class="icon-button" />
+                        <ui:Button name="clear-deploy-source-button" text="清除" class="icon-button" />
+                    </ui:VisualElement>
+                    <ui:Label name="deploy-target-label" class="help-text" />
+                    <ui:Label name="deploy-backup-label" class="help-text" />
+                    <ui:VisualElement class="path-override-controls" style="margin-top: 4px;">
+                        <ui:Button name="deploy-button" text="部署到项目" class="icon-button" />
+                        <ui:Button name="deploy-restore-button" text="恢复备份" class="icon-button" />
+                    </ui:VisualElement>
+                    <ui:Label name="deploy-status-label" class="help-text" />
+                </ui:VisualElement>
+            </ui:Foldout>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,9 @@
+./adb.exe devices
+./adb.exe logcat -s Unity >log0407.txt    
+./adb.exe logcat
+./adb.exe install G:\test.apk
+./adb.exe uninstall com.YOMOV.SilkFantasyJourney2024
+./adb.exe devices
+./adb.exe shell ip addr
+./adb.exe shell am start -n com.YOMOV.SeekingDawn_Remastered_MinorGamer/com.unity3d.player.UnityPlayerActivity
+./adb.exe shell am force-stop com.example.vrapp

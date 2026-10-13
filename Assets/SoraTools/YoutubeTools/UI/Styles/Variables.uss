@@ -1,0 +1,64 @@
+/* YouTube Tools — CSS Variables (--yt-* prefix, Deep Navy Blue theme) */
+:root {
+    /* Primary palette */
+    --yt-bg-deep:       #0d1117;
+    --yt-bg-panel:      #161b22;
+    --yt-bg-card:       #1c2333;
+    --yt-bg-input:      #21262d;
+    --yt-bg-hover:      #30363d;
+    --yt-bg-selected:   #1f3a5f;
+
+    /* Accent */
+    --yt-accent:        #ff0000;
+    --yt-accent-hover:  #cc0000;
+    --yt-accent-dim:    #660000;
+
+    /* Blue accent (secondary) */
+    --yt-blue:          #1d6fa5;
+    --yt-blue-hover:    #1a5f8f;
+
+    /* Green (success) */
+    --yt-green:         #3fb950;
+    --yt-green-dim:     #1a4a20;
+
+    /* Text */
+    --yt-text-primary:  #e6edf3;
+    --yt-text-secondary:#8b949e;
+    --yt-text-muted:    #484f58;
+    --yt-text-link:     #58a6ff;
+
+    /* Borders */
+    --yt-border:        #30363d;
+    --yt-border-focus:  #1d6fa5;
+
+    /* Status colors */
+    --yt-status-info:   #58a6ff;
+    --yt-status-ok:     #3fb950;
+    --yt-status-warn:   #d29922;
+    --yt-status-error:  #f85149;
+
+    /* Spacing */
+    --yt-spacing-xs:    4px;
+    --yt-spacing-sm:    8px;
+    --yt-spacing-md:    12px;
+    --yt-spacing-lg:    16px;
+    --yt-spacing-xl:    24px;
+
+    /* Border radius */
+    --yt-radius-sm:     4px;
+    --yt-radius-md:     6px;
+    --yt-radius-lg:     10px;
+
+    /* Font sizes */
+    --yt-font-xs:       11px;
+    --yt-font-sm:       12px;
+    --yt-font-md:       14px;
+    --yt-font-lg:       16px;
+    --yt-font-xl:       20px;
+    --yt-font-title:    22px;
+
+    /* Progress bar */
+    --yt-progress-bg:   #21262d;
+    --yt-progress-fill: #1d6fa5;
+    --yt-progress-done: #3fb950;
+}

@@ -1,0 +1,133 @@
+"""
+Defines the read_console tool for accessing Unity Editor console messages.
+"""
+from typing import Annotated, Any, Literal
+
+from fastmcp import Context
+from mcp.types import ToolAnnotations
+
+from services.registry import mcp_for_unity_tool
+from services.tools import choose_unity_instance
+from services.tools.utils import coerce_int, coerce_bool, coerce_float
+from transport.unity_transport import send_with_unity_instance
+from transport.legacy.unity_connection import async_send_command_with_retry
+
+
+def _strip_stacktrace_from_list(items: list) -> None:
+    """Remove stacktrace fields from a list of log entries."""
+    for item in items:
+        if isinstance(item, dict) and "stacktrace" in item:
+            item.pop("stacktrace", None)
+
+
+@mcp_for_unity_tool(
+    description="Gets messages from or clears the Unity Editor console. Defaults to 10 most recent entries. Use page_size/cursor for paging. Note: For maximum client compatibility, pass count as a quoted string (e.g., '5'). The 'get' action is read-only; 'clear' modifies ephemeral UI state (not project data).",
+    annotations=ToolAnnotations(
+        title="Read Console",
+    ),
+)
+async def read_console(
+    ctx: Context,
+    action: Annotated[Literal['get', 'clear'],
+                      "Get or clear the Unity Editor console. Defaults to 'get' if omitted."] | None = None,
+    types: Annotated[list[Literal['error', 'warning',
+                                  'log', 'all']], "Message types to get"] | None = None,
+    count: Annotated[int | str,
+                     "Max messages to return in non-paging mode (accepts int or string, e.g., 5 or '5'). Ignored when paging with page_size/cursor."] | None = None,
+    filter_text: Annotated[str, "Text filter for messages"] | None = None,
+    since_timestamp: Annotated[str,
+                               "Get messages after this timestamp (ISO 8601)"] | None = None,
+    page_size: Annotated[int | str,
+                         "Page size for paginated console reads. Defaults to 50 when omitted."] | None = None,
+    cursor: Annotated[int | str,
+                      "Opaque cursor for paging (0-based offset). Defaults to 0."] | None = None,
+    format: Annotated[Literal['plain', 'detailed',
+                              'json'], "Output format"] | None = None,
+    include_stacktrace: Annotated[bool | str,
+                                  "Include stack traces in output (accepts true/false or 'true'/'false')"] | None = None,
+    max_entries_to_scan: Annotated[int | str,
+                                   "Maximum Unity console entries to scan in tail mode. Defaults to 2000."] | None = None,
+    max_message_chars: Annotated[int | str,
+                                 "Maximum characters returned per console message. Defaults to 4000."] | None = None,
+    timeout_seconds: Annotated[float | int | str,
+                               "Optional Unity command timeout in seconds. Defaults to 15 for console reads."] | None = None,
+    unity_instance: Annotated[str,
+                              "Optional target Unity instance Name@hash. Overrides the session active instance for this call."] | None = None,
+) -> dict[str, Any]:
+    unity_instance = choose_unity_instance(ctx, unity_instance)
+    # Set defaults if values are None
+    action = action if action is not None else 'get'
+    types = types if types is not None else ['error', 'warning', 'log']
+    format = format if format is not None else 'plain'
+    # Coerce booleans defensively (strings like 'true'/'false')
+
+    include_stacktrace = coerce_bool(include_stacktrace, default=False)
+    coerced_page_size = coerce_int(page_size, default=None)
+    coerced_cursor = coerce_int(cursor, default=None)
+    coerced_max_entries_to_scan = coerce_int(max_entries_to_scan, default=2000)
+    if coerced_max_entries_to_scan is not None:
+        coerced_max_entries_to_scan = max(1, min(coerced_max_entries_to_scan, 20000))
+    coerced_max_message_chars = coerce_int(max_message_chars, default=4000)
+    if coerced_max_message_chars is not None:
+        coerced_max_message_chars = max(200, min(coerced_max_message_chars, 20000))
+    coerced_timeout = coerce_float(timeout_seconds, default=15.0)
+    if coerced_timeout is not None:
+        coerced_timeout = max(1.0, min(coerced_timeout, 60.0))
+
+    # Normalize action if it's a string
+    if isinstance(action, str):
+        action = action.lower()
+
+    # Coerce count defensively (string/float -> int).
+    # Important: leaving count unset previously meant "return all console entries", which can be extremely slow
+    # (and can exceed the plugin command timeout when Unity has a large console).
+    # To keep the tool responsive by default, we cap the default to a reasonable number of most-recent entries.
+    # If a client truly wants everything, it can pass count="all" (or count="*") explicitly.
+    if isinstance(count, str) and count.strip().lower() in ("all", "*"):
+        count = None
+    else:
+        count = coerce_int(count)
+
+    if action == "get" and count is None:
+        count = 10
+
+    # Prepare parameters for the C# handler
+    params_dict = {
+        "action": action,
+        "types": types,
+        "count": count,
+        "filterText": filter_text,
+        "sinceTimestamp": since_timestamp,
+        "pageSize": coerced_page_size,
+        "cursor": coerced_cursor,
+        "format": format.lower() if isinstance(format, str) else format,
+        "includeStacktrace": include_stacktrace,
+        "maxEntriesToScan": coerced_max_entries_to_scan,
+        "maxMessageChars": coerced_max_message_chars,
+        "timeout_seconds": coerced_timeout,
+    }
+
+    # Remove None values unless it's 'count' (as None might mean 'all')
+    params_dict = {k: v for k, v in params_dict.items()
+                   if v is not None or k == 'count'}
+
+    # Add count back if it was None, explicitly sending null might be important for C# logic
+    if 'count' not in params_dict:
+        params_dict['count'] = None
+
+    # Use centralized retry helper with instance routing
+    resp = await send_with_unity_instance(async_send_command_with_retry, unity_instance, "read_console", params_dict)
+    if isinstance(resp, dict) and resp.get("success") and not include_stacktrace:
+        # Strip stacktrace fields from returned lines if present
+        try:
+            data = resp.get("data")
+            if isinstance(data, dict):
+                for key in ("lines", "items"):
+                    if key in data and isinstance(data[key], list):
+                        _strip_stacktrace_from_list(data[key])
+                        break
+            elif isinstance(data, list):
+                _strip_stacktrace_from_list(data)
+        except Exception:
+            pass
+    return resp if isinstance(resp, dict) else {"success": False, "message": str(resp)}

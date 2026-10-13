@@ -1,0 +1,8 @@
+com.soratools.usbadb.library-pngs-0 I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\build\generated\res\pngs\release
+com.soratools.usbadb.library-resValues-1 I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\build\generated\res\resValues\release
+com.soratools.usbadb.library-rs-2 I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\build\generated\res\rs\release
+com.soratools.usbadb.library-mergeReleaseResources-3 I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\build\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.soratools.usbadb.library-mergeReleaseResources-4 I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\build\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.soratools.usbadb.library-merged_res-5 I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\build\intermediates\merged_res\release
+com.soratools.usbadb.library-main-6 I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\res
+com.soratools.usbadb.library-release-7 I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\release\res

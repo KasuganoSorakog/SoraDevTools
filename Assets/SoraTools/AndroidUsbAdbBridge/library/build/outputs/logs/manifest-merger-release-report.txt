@@ -1,0 +1,31 @@
+-- Merging decision tree log ---
+manifest
+ADDED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml:2:1-6:12
+INJECTED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml:2:1-6:12
+INJECTED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml:2:1-6:12
+	package
+		INJECTED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml
+		ADDED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml:2:1-6:12
+		INJECTED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml:2:11-69
+uses-feature#android.hardware.usb.host
+ADDED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml:3:5-5:36
+	android:required
+		ADDED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml:5:9-33
+	android:name
+		ADDED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml:4:9-49
+uses-sdk
+INJECTED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml
+INJECTED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml
+INJECTED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml
+INJECTED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml
+		ADDED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml
+		INJECTED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml
+		ADDED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml
+		INJECTED from I:\SoraProject\SoraDevTools\Assets\SoraTools\AndroidUsbAdbBridge\library\src\main\AndroidManifest.xml

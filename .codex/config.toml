@@ -1,0 +1,13 @@
+[mcp_servers.UnityMCP]
+url = "http://localhost:8080/mcp"
+
+[mcp_servers.feishu-mcp]
+url = "https://mcp.feishu.cn/mcp/mcp_p7UCU4l9STeMMGF0mNA72jxMx49GJz_aF1oHagOWLzNpBKwVcvuuTSNWSxr3jFkzdiNRGVyiH8I"
+
+[mcp_servers.obsidian]
+command = "npx"
+args = [
+    "-y",
+    "@mauricio.wolff/mcp-obsidian@latest",
+    "I:/SoraTools/Yomov项目知识库",
+]

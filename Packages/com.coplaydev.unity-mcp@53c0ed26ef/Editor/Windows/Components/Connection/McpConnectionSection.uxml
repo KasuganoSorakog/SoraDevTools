@@ -1,0 +1,44 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="../Common.uss" />
+    <ui:VisualElement name="connection-section" class="section connection-section">
+        <ui:Label text="连接与本地 Server" class="section-title" />
+        <ui:VisualElement class="section-content">
+            <ui:VisualElement class="setting-row">
+                <ui:Label text="连接方式:" class="setting-label" />
+                <ui:DropdownField name="transport-dropdown" class="setting-dropdown-inline" />
+            </ui:VisualElement>
+            <ui:VisualElement class="setting-row" name="http-url-row">
+                <ui:Label text="HTTP 地址:" class="setting-label" />
+                <ui:TextField name="http-url" class="url-field" />
+            </ui:VisualElement>
+            <ui:VisualElement class="connection-command-row">
+                <ui:VisualElement class="status-container">
+                    <ui:VisualElement name="status-indicator" class="status-dot" />
+                    <ui:Label name="connection-status" text="未连接 Session" class="status-text" />
+                </ui:VisualElement>
+                <ui:Button name="start-http-server-button" text="启动 Server" class="action-button server-toggle-button" />
+                <ui:Button name="connection-toggle" text="启动 Session" class="action-button" />
+            </ui:VisualElement>
+            <ui:VisualElement class="setting-row" name="health-row">
+                <ui:Label text="健康状态:" class="setting-label" />
+                <ui:VisualElement class="status-container">
+                    <ui:VisualElement name="health-indicator" class="status-dot" />
+                    <ui:Label name="health-status" text="未知" class="status-text" />
+                </ui:VisualElement>
+                <ui:Button name="test-connection-button" text="测试连接" class="action-button" />
+            </ui:VisualElement>
+            <ui:Foldout name="http-server-command-section" text="Server 详情" class="server-details-foldout">
+                <ui:Label text="本地 Server 启动命令:" class="config-label" />
+                <ui:VisualElement class="config-json-row">
+                    <ui:TextField name="http-server-command" readonly="true" multiline="true" class="config-json-field" />
+                    <ui:Button name="copy-http-server-command-button" text="复制" class="icon-button-vertical" />
+                </ui:VisualElement>
+                <ui:Label name="http-server-command-hint" class="help-text" />
+            </ui:Foldout>
+            <ui:VisualElement class="setting-row" name="unity-socket-port-row">
+                <ui:Label text="Unity 端口:" class="setting-label" />
+                <ui:TextField name="unity-port" class="port-field" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

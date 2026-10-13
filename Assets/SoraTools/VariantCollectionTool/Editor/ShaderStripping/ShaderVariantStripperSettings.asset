@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99fc1e2854d38984eb609553cfba792c, type: 3}
+  m_Name: ShaderVariantStripperSettings
+  m_EditorClassIdentifier: 
+  isEnabled: 1
+  keywordsToStrip:
+  - _SPECULARHIGHLIGHTS_OFF
+  - _ENVIRONMENTREFLECTIONS_OFF
+  - _PARALLAXMAP
+  - _ADDITIONAL_LIGHTS_VERTEX
+  - _FORWARD_PLUS
+  - _SHADOWS_SOFT
+  - _SHADOWS_SOFT_LOW
+  - _SHADOWS_SOFT_MEDIUM
+  - _SHADOWS_SOFT_HIGH
+  - _REFLECTION_PROBE_BLENDING
+  - _REFLECTION_PROBE_BOX_PROJECTION
+  - _SCREEN_SPACE_OCCLUSION
+  - _LIGHT_LAYERS
+  - LOD_FADE_CROSSFADE
+  - DEBUG_DISPLAY

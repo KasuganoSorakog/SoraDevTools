@@ -1,0 +1,205 @@
+.app-root {
+    flex-grow: 1;
+    background-color: #1b1f20;
+    color: #edf2ee;
+    padding-left: 24px;
+    padding-top: 20px;
+    padding-right: 24px;
+    padding-bottom: 20px;
+}
+
+.app-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.app-title {
+    font-size: 24px;
+    unity-font-style: bold;
+    color: #f7fbf7;
+}
+
+.app-subtitle {
+    color: #aab5ad;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.content-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.panel-section {
+    background-color: #252b2b;
+    border-left-width: 1px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: #3b4743;
+    border-top-color: #3b4743;
+    border-right-color: #3b4743;
+    border-bottom-color: #3b4743;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    min-width: 320px;
+    flex-grow: 1;
+    margin-right: 14px;
+    margin-bottom: 14px;
+    padding-left: 16px;
+    padding-top: 14px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+}
+
+.section-heading {
+    color: #f0f7f1;
+    font-size: 16px;
+    unity-font-style: bold;
+    margin-bottom: 10px;
+}
+
+.status-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.field-label {
+    color: #9eaca3;
+    min-width: 96px;
+    margin-right: 10px;
+}
+
+.field-value {
+    color: #eff5f0;
+    flex-grow: 1;
+    white-space: normal;
+}
+
+.status-good {
+    color: #75d19a;
+}
+
+.status-warn {
+    color: #f2c46d;
+}
+
+.status-error {
+    color: #ee8b7c;
+}
+
+.status-neutral {
+    color: #aab5ad;
+}
+
+.toolbar-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.toolbar-row > Button {
+    min-width: 108px;
+    height: 34px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.primary-command {
+    background-color: #3b8768;
+    border-left-color: #56a77f;
+    border-top-color: #56a77f;
+    border-right-color: #2a5f49;
+    border-bottom-color: #2a5f49;
+    color: #ffffff;
+}
+
+.primary-command:hover {
+    background-color: #4b9b77;
+}
+
+.secondary-command {
+    background-color: #35423e;
+    border-left-color: #52635d;
+    border-top-color: #52635d;
+    border-right-color: #28322f;
+    border-bottom-color: #28322f;
+    color: #e5ece7;
+}
+
+.secondary-command:hover {
+    background-color: #43534d;
+}
+
+.cancel-command {
+    background-color: #74453f;
+    border-left-color: #a96358;
+    border-top-color: #a96358;
+    border-right-color: #512e2a;
+    border-bottom-color: #512e2a;
+    color: #ffffff;
+}
+
+.form-row {
+    margin-bottom: 9px;
+}
+
+.form-row > Label {
+    color: #bec8c1;
+    min-width: 92px;
+}
+
+.form-row TextField,
+.form-row DropdownField {
+    flex-grow: 1;
+}
+
+.verification-list {
+    margin-top: 6px;
+}
+
+.verification-item {
+    flex-direction: row;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom-width: 1px;
+    border-bottom-color: #36413d;
+}
+
+.verification-item:last-child {
+    border-bottom-width: 0px;
+}
+
+.progress-label {
+    min-height: 34px;
+    white-space: normal;
+    color: #d9e2dc;
+    margin-top: 8px;
+}
+
+.error-message {
+    white-space: normal;
+    color: #f1a095;
+    background-color: #3a2928;
+    border-left-width: 3px;
+    border-left-color: #d66b5d;
+    padding-left: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-top: 8px;
+}
+
+.hidden {
+    display: none;
+}
